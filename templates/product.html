@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Vegan Chocolate Chip Cookies | Allergy-Free Foods</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="#">Allergy-Free Foods</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger-menu">&#9776;</div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search products..." />
+        <button>Search</button>
+      </div>
+      <div class="cart">
+        <a href="#">Cart (0)</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="product-details">
+        <div class="product-image">
+          <img
+            src="vegan-chocolate-chip-cookies-image-url"
+            alt="Vegan Chocolate Chip Cookies"
+          />
+        </div>
+        <div class="product-info">
+          <h1>Vegan Chocolate Chip Cookies</h1>
+          <div class="rating">
+            <span>★★★★★</span>
+            <span class="rating-value">4.8</span>
+          </div>
+          <p class="product-price">$3.49</p>
+          <p class="product-description">
+            Delicious vegan chocolate chip cookies that are perfect for those
+            with dairy and egg allergies. Made with high-quality ingredients,
+            these cookies are a tasty and healthy snack option.
+          </p>
+          <button class="add-to-cart">Add to Cart</button>
+        </div>
+      </section>
+
+      <section class="product-reviews">
+        <h3>Customer Reviews</h3>
+        <div class="review">
+          <div class="rating">
+            <span>★★★★★</span>
+            <span class="rating-value">5.0</span>
+          </div>
+          <h4>John Doe</h4>
+          <p class="review-text">
+            These cookies are amazing! I can't believe they're vegan. They taste
+            just like regular chocolate chip cookies. Highly recommended!
+          </p>
+        </div>
+        <!-- Add more reviews as needed -->
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="social-media">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </footer>
+
+    <script>
+      // Hamburger menu functionality
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      hamburgerMenu.addEventListener("click", () => {
+        mainNav.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="styles.css"/>
+    <title>Allergy-Free Foods</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="#">Allergy-Free Foods</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger-menu">&#9776;</div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search products..." />
+        <button>Search</button>
+      </div>
+      <div class="cart">
+        <a href="#">Cart (0)</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+          <div class="product-card">
+            <img src="product1-image-url" alt="Product 1" />
+            <h3 class="product-name">Gluten-Free Bread</h3>
+            <p class="product-price">$5.99</p>
+            <div class="rating">
+              <span>★★★★☆</span>
+              <span class="rating-value">4.3</span>
+            </div>
+            <p class="delivery-time">Estimated delivery: 3-5 days</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+          <div class="product-card">
+            <img src="product2-image-url" alt="Product 2" />
+            <h3 class="product-name">Vegan Chocolate Chip Cookies</h3>
+            <p class="product-price">$3.49</p>
+            <div class="rating">
+              <span>★★★★★</span>
+              <span class="rating-value">4.8</span>
+            </div>
+            <p class="delivery-time">Estimated delivery: 4-6 days</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+          <div class="product-card">
+            <img src="product3-image-url" alt="Product 3" />
+            <h3 class="product-name">Dairy-Free Cheese</h3>
+            <p class="product-price">$6.49</p>
+            <div class="rating">
+              <span>★★★★☆</span>
+              <span class="rating-value">4.2</span>
+            </div>
+            <p class="delivery-time">Estimated delivery: 2-4 days</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+          <div class="product-card">
+            <img src="product4-image-url" alt="Product 4" />
+            <h3 class="product-name">Soy-Free Veggie Burgers</h3>
+            <p class="product-price">$7.99</p>
+            <div class="rating">
+              <span>★★★★☆</span>
+              <span class="rating-value">4.1</span>
+            </div>
+            <p class="delivery-time">Estimated delivery: 3-5 days</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+          <div class="product-card">
+            <img src="product5-image-url" alt="Product 5" />
+            <h3 class="product-name">Nut-Free Granola Bars</h3>
+            <p class="product-price">$4.99</p>
+            <div class="rating">
+              <span>★★★★★</span>
+              <span class="rating-value">4.9</span>
+            </div>
+            <p class="delivery-time">Estimated delivery: 5-7 days</p>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+        </div>
+      </section>
+      <section class="allergen-filters">
+        <h2>Filter by Allergen</h2>
+        <ul class="allergen-list">
+          <li>
+            <input type="checkbox" id="gluten-free" />
+            <label for="gluten-free">Gluten-Free</label>
+          </li>
+          <!-- Add more allergen filters as needed -->
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="social-media">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </footer>
+    <script>
+      // Hamburger menu functionality
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      hamburgerMenu.addEventListener("click", () => {
+        mainNav.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
