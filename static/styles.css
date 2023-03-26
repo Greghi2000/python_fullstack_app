@@ -149,6 +149,12 @@
     font-size: 0.9rem;
     margin-bottom: 1rem;
   }
+
+  .delivery-time {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
   
   .add-to-cart {
     background-color: #4a69bd;

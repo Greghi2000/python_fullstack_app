@@ -45,6 +45,6 @@ def delete_by_id(id):
     run_sql(sql, values)
 
 def update(allergen):
-    sql = "UPDATE allergen SET name = %s WHERE id = %s"
-    values = [allergen.name, allergen.id]
+    sql = "UPDATE allergen SET (name, product) = (%s, %s) WHERE id = %s"
+    values = [allergen.name, allergen.product, allergen.id]
     run_sql(sql, values)

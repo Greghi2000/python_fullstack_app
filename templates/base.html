@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/styles.css"/>
+    <title>Allergy-Free Foods</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="#">Allergy-Free Foods</a>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Categories</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger-menu">&#9776;</div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search products..." />
+        <button>Search</button>
+      </div>
+      <div class="cart">
+        <a href="#">Cart (0)</a>
+      </div>
+    </header>
+
+    <main>
+      <a href="/index">ENTER</a>
+    </main>
+    <script>
+      // Hamburger menu functionality
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const mainNav = document.querySelector(".main-nav");
+
+      hamburgerMenu.addEventListener("click", () => {
+        mainNav.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

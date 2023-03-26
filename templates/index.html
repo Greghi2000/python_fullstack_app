@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="../static/styles.css"/>
     <title>Allergy-Free Foods</title>
   </head>
   <body>
@@ -25,15 +25,28 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="#">Cart (0)</a>
+        <a href="/index/cart/">Cart {{items_in_cart}}</a>
       </div>
     </header>
 
     <main>
       <section class="featured-products">
         <h2>Featured Products</h2>
+        <a href="/product/new">Add Product</a>
         <div class="product-grid">
+          {% for product in products %}
           <div class="product-card">
+            <img src="product2-image-url" alt="Product" />
+            <h3 class="product-name">{{product.name}}</h3>
+            <p class="product-price">${{product.price}}</p>
+            <!-- <p class="delivery-time" href="../templates/product.html">Estimated delivery: 4-6 days</p> -->
+              <a class="view-prod" href="/index/product/{{product.id}}">View Product</a>
+              <a class="delete-prod" href="/index/delete/{{product.id}}">Delete Product</a>
+              <a class="delete-prod" href="/index/add/{{product.id}}">Add to Cart</a>
+            <button class="add-to-cart">Add to Cart</button>
+          </div>
+          {% endfor %}
+          <!-- <div class="product-card">
             <img src="product1-image-url" alt="Product 1" />
             <h3 class="product-name">Gluten-Free Bread</h3>
             <p class="product-price">$5.99</p>
@@ -87,33 +100,25 @@
             </div>
             <p class="delivery-time">Estimated delivery: 5-7 days</p>
             <button class="add-to-cart">Add to Cart</button>
-          </div>
+          </div> -->
         </div>
       </section>
       <section class="allergen-filters">
         <h2>Filter by Allergen</h2>
+        {% for allergen in allergens %}
         <ul class="allergen-list">
           <li>
-            <input type="checkbox" id="gluten-free" />
-            <label for="gluten-free">Gluten-Free</label>
+            <input type="checkbox" id="allergen-name" name="allergen-name"/>
+            <label for="gluten-free" id="allergen-name">{{allergen.name}}</label>
           </li>
-          <!-- Add more allergen filters as needed -->
         </ul>
+        {% endfor %}
       </section>
+      <div>
+        {% block content %}
+        {% endblock %}
+      </div>
     </main>
-    <footer>
-      <div class="footer-links">
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-        </ul>
-      </div>
-      <div class="social-media">
-        <a href="#">Facebook</a>
-        <a href="#">Twitter</a>
-        <a href="#">Instagram</a>
-      </div>
-    </footer>
     <script>
       // Hamburger menu functionality
       const hamburgerMenu = document.querySelector(".hamburger-menu");

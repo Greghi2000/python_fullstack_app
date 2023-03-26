@@ -7,6 +7,13 @@ import repositories.allergen_repository as allergen_repository
 import repositories.product_repository as product_repository
 import repositories.shopping_cart_repository as shopping_cart_repository
 
+# def save(cart_item):
+#     sql = "INSERT INTO cart_item (quantity, product_id) VALUES (%s, %s) RETURNING id"
+#     values = [cart_item.quantity, cart_item.product_id.id]
+#     results = run_sql(sql, values)
+#     id = results[0]['id']
+#     cart_item.id = id
+
 def save(cart_item):
     sql = "INSERT INTO cart_item (quantity, product_id) VALUES (%s, %s) RETURNING id"
     values = [cart_item.quantity, cart_item.product_id.id]
@@ -19,7 +26,8 @@ def select_all():
     sql = "SELECT * FROM cart_item"
     results = run_sql(sql)
     for row in results:
-        cart_item = CartItem(row['quantity'], row['product'], row['id'])
+        product = product_repository.select(row["product_id"])
+        cart_item = CartItem(row['quantity'], product.id, row['id'])
         cart_items.append(cart_item)
     return cart_items
 
@@ -30,7 +38,8 @@ def select(id):
     results = run_sql(sql, values)
     if results:
         result = results[0]
-        cart_item = CartItem(result['name'], result['product'], result['id'])
+        product = product_repository.select(result["product_id"])
+        cart_item = CartItem(result['quantity'], product, result['id'])
     return cart_item
 
 def delete_all():
@@ -46,3 +55,10 @@ def update(cart_item):
     sql = "UPDATE cart_item SET quantity = %s WHERE id = %s"
     values = [cart_item.quantity, cart_item.id]
     run_sql(sql, values)
+
+def quantity_of_products():
+    sql = "SELECT SUM (quantity) FROM cart_item"
+    results = run_sql(sql)
+    if results:
+        result = results[0][0]
+    return result
