@@ -40,6 +40,7 @@ product2 = Product('Pasta', 'This is pasta', 2.99, 'image url', 4, 100,
 product_repository.save(product2)
 all_products = product_repository.select_all()
 for product in all_products:
+    print('start here')
     print(product.id)
     print(product.allergen_id.id)
     product_repository.select(product.id) # select WORKS
@@ -50,9 +51,9 @@ for product in all_products:
         print(products_without_allergen.price)
 
 print("Saving!")
-# product1 = Product('Soy Milk hello', 'This is soy milk', 2.99, 'image url', 4, 100,
-#               allergen2)
-product1.name = "bitch"
+product1 = Product('Soy Milk hello', 'This is soy milk', 2.99, 'image url', 4, 100,
+              allergen2)
+# product1.name = "bitch"
 product_repository.update(product1) 
 print("Saved!")
 
@@ -75,3 +76,14 @@ shopping_cart1 = ShoppingCart(cart_item1)
 shopping_cart_repository.save(shopping_cart1)
 
 print(cart_item_repository.quantity_of_products())
+
+
+all_cart_prods = cart_item_repository.select_all()
+
+for cart_item in all_cart_prods:
+    products = cart_item.product_id
+    print(cart_item.product_id)
+    var = product_repository.select(products)
+    print(var.description)
+
+# UPDATE PRODUCT METHOD NOT WORKING CORRECTLY???

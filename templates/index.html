@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="../static/styles.css"/>
+    <link rel="stylesheet" href="/static/styles.css"/>
     <title>Allergy-Free Foods</title>
   </head>
   <body>
     <header>
       <div class="logo">
-        <a href="#">Allergy-Free Foods</a>
+        <a href="/">Allergy-Free Foods</a>
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="/products">Home</a></li>
           <li><a href="#">Categories</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
@@ -25,93 +25,43 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="/index/cart/">Cart {{items_in_cart}}</a>
+        <a href="/products/cart">Cart ({{items_in_cart}})</a>
       </div>
     </header>
 
     <main>
       <section class="featured-products">
         <h2>Featured Products</h2>
-        <a href="/product/new">Add Product</a>
+        <a class="add-product" href="/products/new">Add Product</a>
         <div class="product-grid">
           {% for product in products %}
+          {% if allergen_to_filter not in product.allergens %}
           <div class="product-card">
             <img src="product2-image-url" alt="Product" />
-            <h3 class="product-name">{{product.name}}</h3>
+            <!-- <h3 class="product-name">product.name</h3> -->
+            <a class="product-name" href="/products/{{product.id}}">{{product.name}}</a>
             <p class="product-price">${{product.price}}</p>
             <!-- <p class="delivery-time" href="../templates/product.html">Estimated delivery: 4-6 days</p> -->
-              <a class="view-prod" href="/index/product/{{product.id}}">View Product</a>
-              <a class="delete-prod" href="/index/delete/{{product.id}}">Delete Product</a>
-              <a class="delete-prod" href="/index/add/{{product.id}}">Add to Cart</a>
-            <button class="add-to-cart">Add to Cart</button>
+              <a class="add-prod" href="/cart/add/{{product.id}}">Add to Cart</a>
+              <!-- <a class="delete-prod" href="/products/edit/{{product.id}}">Edit</a> -->
+              <button class="add-to-cart">Add to Cart</button>
+              <div>
+                <a class="delete-prod" href="/products/delete/{{product.id}}">Delete</a>
+                <a class="edit-prod" href="/products/edit/{{product.id}}">Edit</a>
+              </div>
           </div>
+          {% endif %}
+          
           {% endfor %}
-          <!-- <div class="product-card">
-            <img src="product1-image-url" alt="Product 1" />
-            <h3 class="product-name">Gluten-Free Bread</h3>
-            <p class="product-price">$5.99</p>
-            <div class="rating">
-              <span>★★★★☆</span>
-              <span class="rating-value">4.3</span>
-            </div>
-            <p class="delivery-time">Estimated delivery: 3-5 days</p>
-            <button class="add-to-cart">Add to Cart</button>
-          </div>
-          <div class="product-card">
-            <img src="product2-image-url" alt="Product 2" />
-            <h3 class="product-name">Vegan Chocolate Chip Cookies</h3>
-            <p class="product-price">$3.49</p>
-            <div class="rating">
-              <span>★★★★★</span>
-              <span class="rating-value">4.8</span>
-            </div>
-            <p class="delivery-time">Estimated delivery: 4-6 days</p>
-            <button class="add-to-cart">Add to Cart</button>
-          </div>
-          <div class="product-card">
-            <img src="product3-image-url" alt="Product 3" />
-            <h3 class="product-name">Dairy-Free Cheese</h3>
-            <p class="product-price">$6.49</p>
-            <div class="rating">
-              <span>★★★★☆</span>
-              <span class="rating-value">4.2</span>
-            </div>
-            <p class="delivery-time">Estimated delivery: 2-4 days</p>
-            <button class="add-to-cart">Add to Cart</button>
-          </div>
-          <div class="product-card">
-            <img src="product4-image-url" alt="Product 4" />
-            <h3 class="product-name">Soy-Free Veggie Burgers</h3>
-            <p class="product-price">$7.99</p>
-            <div class="rating">
-              <span>★★★★☆</span>
-              <span class="rating-value">4.1</span>
-            </div>
-            <p class="delivery-time">Estimated delivery: 3-5 days</p>
-            <button class="add-to-cart">Add to Cart</button>
-          </div>
-          <div class="product-card">
-            <img src="product5-image-url" alt="Product 5" />
-            <h3 class="product-name">Nut-Free Granola Bars</h3>
-            <p class="product-price">$4.99</p>
-            <div class="rating">
-              <span>★★★★★</span>
-              <span class="rating-value">4.9</span>
-            </div>
-            <p class="delivery-time">Estimated delivery: 5-7 days</p>
-            <button class="add-to-cart">Add to Cart</button>
-          </div> -->
         </div>
       </section>
+      <h2>Filter by Allergen</h2>
       <section class="allergen-filters">
-        <h2>Filter by Allergen</h2>
         {% for allergen in allergens %}
-        <ul class="allergen-list">
-          <li>
-            <input type="checkbox" id="allergen-name" name="allergen-name"/>
-            <label for="gluten-free" id="allergen-name">{{allergen.name}}</label>
-          </li>
-        </ul>
+        <div class="allergen-container">
+              <input type="checkbox" id="allergen-name" name="allergen-name"/>
+              <a label href="/products/filter/{{allergen.id}}" for="gluten-free" id="allergen-name">{{allergen.name}}</label>
+        </div>
         {% endfor %}
       </section>
       <div>

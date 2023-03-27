@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/styles.css"/>
-    <title>{{product.name}} | Allergy-Free Foods</title>
+    <title>| Allergy-Free Foods</title>
   </head>
   <body>
     <header>
       <div class="logo">
-        <a href="/">Allergy-Free Foods</a>
+        <a href="#">Allergy-Free Foods</a>
       </div>
       <nav class="main-nav">
         <ul>
-          <li><a href="/products">Home</a></li>
+          <li><a href="#">Home</a></li>
           <li><a href="#">Categories</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Contact</a></li>
@@ -25,29 +25,25 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="/products/cart">Cart (0)</a>
+        <a href="#">Cart ({{ items_in_cart }})</a>
       </div>
     </header>
 
     <main>
-      <section class="product-details">
-        <div class="product-image">
-          <!-- <img
-            src="vegan-chocolate-chip-cookies-image-url"
-            alt="Vegan Chocolate Chip Cookies"
-          /> -->
-        </div>
-        <div class="product-info">
-          <h1>{{product.name}}</h1>
-          <div class="rating">
-            <span>★★★★★</span>
-            <span class="rating-value">{{product.rating}}</span>
+      <section class="featured-products">
+        <h2>Cart Products</h2>
+        <div class="product-grid">
+          {% for cart_item in total_items_in_cart %}
+          <div class="product-card">
+            <img src="product2-image-url" alt="Product" />
+            <h3 class="product-name">{{cart_item.product_id.name}}</h3>
+            <p class="product-price">${{cart_item.product_id.price}}</p>
+            <p class="product-price">${{cart_item.product_id.price}}</p>
+            <p class="product-quantity">{{cart_item.quantity}}</p>
+            <button class="add-to-cart">Add to Cart</button>
           </div>
-          <p class="product-price">${{product.price}}</p>
-          <p class="product-description">
-            {{product.description}}
-          </p>
-          <button class="add-to-cart">Add to Cart</button>
+          
+          {% endfor %}
         </div>
       </section>
     </main>

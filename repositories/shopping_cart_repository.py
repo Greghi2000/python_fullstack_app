@@ -9,7 +9,6 @@ import repositories.product_repository as product_repository
 
 def save(shopping_cart):
     sql = "INSERT INTO shopping_cart (cart_item_id) VALUES (%s) RETURNING id"
-    print("sc id: " + str(shopping_cart.items_id.id))
     values = [shopping_cart.items_id.id]
     results = run_sql(sql, values)
     id = results[0]['id']

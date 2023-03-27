@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/styles.css"/>
-    <title>{{product.name}} | Allergy-Free Foods</title>
+    <title>{{products.name}} | Allergy-Free Foods</title>
   </head>
   <body>
     <header>
@@ -25,7 +25,7 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="/products/cart">Cart (0)</a>
+        <a href="#">Cart (0)</a>
       </div>
     </header>
 
@@ -37,22 +37,49 @@
             alt="Vegan Chocolate Chip Cookies"
           /> -->
         </div>
-        <div class="product-info">
-          <h1>{{product.name}}</h1>
-          <div class="rating">
-            <span>★★★★★</span>
-            <span class="rating-value">{{product.rating}}</span>
+          <form action="/products/create" method="POST">
+            <div>
+              <label for="product" class="add-product">Product:</label>
+              <input type="text" id="product" name="product">
           </div>
-          <p class="product-price">${{product.price}}</p>
-          <p class="product-description">
-            {{product.description}}
-          </p>
-          <button class="add-to-cart">Add to Cart</button>
-        </div>
+            <div>
+              <label for="description" class="add-product">Description:</label>
+              <input type="text" id="description" name="description">
+          </div>
+            <div>
+              <label for="price" class="add-product">Price:</label>
+              <input type="text" id="price" name="price">
+          </div>
+            <div>
+              <label for="img-url" class="add-product">Image Url:</label>
+              <input type="text" id="img-url" name="img-url">
+          </div>
+            <div>
+              <label for="rating" class="add-product">Rating:</label>
+              <input type="text" id="rating" name="rating">
+          </div>
+            <div>
+              <label for="stock" class="add-product">Stock:</label>
+              <input type="text" id="stock" name="stock">
+          </div>
+          <div>
+              <label for="allergen_id" class="add-product">Allergen:</label>
+              <select name="allergen_id" id="allergen_id">
+                  {% for allergen in allergens %}
+                  <option value="{{ allergen.id }}">
+                      {{ allergen.name }}
+                  </option>
+                  {% endfor %}
+              </select>
+          </div>
+          <div>
+              <input class="add-to-cart" type="submit">
+          </div>
+        </form>
       </section>
     </main>
 
-    <footer>
+    <!-- <footer>
       <div class="footer-links">
         <ul>
           <li><a href="#">Privacy Policy</a></li>
@@ -64,7 +91,7 @@
         <a href="#">Twitter</a>
         <a href="#">Instagram</a>
       </div>
-    </footer>
+    </footer> -->
 
     <script>
       // Hamburger menu functionality

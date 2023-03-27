@@ -56,7 +56,7 @@ def update(cart_item):
     values = [cart_item.quantity, cart_item.id]
     run_sql(sql, values)
 
-def quantity_of_products():
+def quantity_of_products() -> int:
     sql = "SELECT SUM (quantity) FROM cart_item"
     results = run_sql(sql)
     if results:

@@ -25,7 +25,7 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="/products/cart">Cart (0)</a>
+        <a href="#">Cart (0)</a>
       </div>
     </header>
 
@@ -49,6 +49,45 @@
           </p>
           <button class="add-to-cart">Add to Cart</button>
         </div>
+          <form action="/products/edit" method="POST">
+            <div>
+              <label for="product">Product:</label>
+              <input type="text" id="product" name="product" value={{product.name}}>
+          </div>
+            <div>
+              <label for="description">Description:</label>
+              <input type="text" id="description" name="description" value={{product.description}}>
+          </div>
+            <div>
+              <label for="price">Price:</label>
+              <input type="text" id="price" name="price" value={{product.price}}>
+          </div>
+            <div>
+              <label for="img-url">Image Url:</label>
+              <input type="text" id="img-url" name="img-url" value={{product.image_url}}>
+          </div>
+            <div>
+              <label for="rating">Rating:</label>
+              <input type="text" id="rating" name="rating" value={{product.rating}}>
+          </div>
+            <div>
+              <label for="stock">Stock:</label>
+              <input type="text" id="stock" name="stock" value={{product.stock}}>
+          </div>
+          <div>
+              <label for="allergen_id">Allergen:</label>
+              <select name="allergen_id" id="allergen_id">
+                  {% for allergen in allergens %}
+                  <option value="{{ allergen.id }}">
+                      {{ allergen.name }}
+                  </option>
+                  {% endfor %}
+              </select>
+          </div>
+          <div>
+              <input type="submit">
+          </div>
+        </form>
       </section>
     </main>
 

@@ -101,6 +101,24 @@
     margin-bottom: 1.5rem;
     color: #333;
   }
+
+  .allergen-filters {
+    display: flex;
+  }
+
+  .add-product {
+    font-weight: 900;
+    font-size: large;
+  }
+
+  .allergen-container {
+    padding-right: 20px;
+  }
+
+  .div-container {
+    display: flex;
+    justify-content: center;
+  }
   
   .product-grid {
     display: grid;
@@ -128,6 +146,8 @@
   
   .product-name {
     margin-bottom: 0.5rem;
+    font-weight: 900;
+    font-size: large;
   }
   
   .product-price {
@@ -234,6 +254,7 @@
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
+    justify-content: center;
   }
   
   .product-image img {
@@ -259,6 +280,10 @@
   
   .review-text {
     margin-top: 0.5rem;
+  }
+
+  .delete-prod {
+    padding-right: 20px;
   }
   
   /* Media queries for responsiveness */

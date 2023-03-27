@@ -26,12 +26,12 @@ def select_all():
         products.append(product)
     return products
 
-def select_all_without_allergens(allergen):
+def select_all_without_allergens(allergen_id):
     products = []
     sql = """SELECT *
         FROM product
         WHERE allergen_id <> %s"""
-    values = [allergen]
+    values = [allergen_id]
     results = run_sql(sql, values)
     for row in results:
         allergen = allergen_repository.select(row["allergen_id"])
@@ -40,7 +40,7 @@ def select_all_without_allergens(allergen):
         products.append(product)
     return products
 
-def select(id):
+def select(id) -> Product:
     product = None
     sql = "SELECT * FROM product WHERE id = %s"
     values = [id]
