@@ -28,6 +28,6 @@ CREATE TABLE cart_item (
 );
 
 CREATE TABLE shopping_cart (
-    id SERIAL PRIMARY KEY,
+    -- id SERIAL PRIMARY KEY,
     cart_item_id INT REFERENCES cart_item(id)
 );

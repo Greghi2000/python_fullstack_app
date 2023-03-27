@@ -25,7 +25,7 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="/products/cart">Cart ({{items_in_cart}})</a>
+        <a href="/products/cart">Cart ({{number_items_in_cart}})</a>
       </div>
     </header>
 
@@ -37,7 +37,7 @@
           {% for product in products %}
           {% if allergen_to_filter not in product.allergens %}
           <div class="product-card">
-            <img src="product2-image-url" alt="Product" />
+            <!-- <img src="product2-image-url" alt="Product" /> -->
             <!-- <h3 class="product-name">product.name</h3> -->
             <a class="product-name" href="/products/{{product.id}}">{{product.name}}</a>
             <p class="product-price">${{product.price}}</p>

@@ -9,23 +9,26 @@ import repositories.cart_item_repository as cart_item_repository
 import repositories.shopping_cart_repository as shopping_cart_repository
 
 
-product_blueprint = Blueprint("product", __name__)
+shopping_cart_blueprint = Blueprint("shopping_cart", __name__)
 
 # INDEX
-@product_blueprint.route("/cart/add/<id>")
-def add_product_to_cart(product_id: int):
+@shopping_cart_blueprint.route("/cart/add/<id>")
+def add_product_to_cart(id: int):
+    print("id of the product to add", id)
     products = product_repository.select_all()
     allergens = allergen_repository.select_all()
-    items_in_cart = cart_item_repository.quantity_of_products()
+    items_in_cart = cart_item_repository.select_all()
+    number_items_in_cart=0
+    for item in items_in_cart:
+        number_items_in_cart = number_items_in_cart + item.quantity
 
+    product=product_repository.select(id)
+    print("product in add to cart", product)
 
-    product=product_repository.select(product_id)
-    
-    cart_item = CartItem(product_id=product_id, quantity=1)
+    cart_item = CartItem(product=product, quantity=1, product_id=product.id)
+    cart_item = cart_item_repository.save(cart_item)
     shopping_cart=ShoppingCart(items_in_cart)
-    shopping_cart.add_cart_item(cart_item)
-
-
-
-
-    return render_template("index.html", items_in_cart=items_in_cart, products=products, allergens=allergens)
+    shopping_cart.addItem(cart_item)
+    shopping_cart_repository.save(shopping_cart)
+    return redirect("/products")
+    # return render_template("index.html", number_items_in_cart=number_items_in_cart, items_in_cart=items_in_cart, products=products, allergens=allergens)

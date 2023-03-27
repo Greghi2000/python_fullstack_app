@@ -26,8 +26,8 @@ all_allergies = allergen_repository.select_all()
 for allergy in all_allergies:
     print(allergy.id)
 
-allergen2.product = 'All products containing lactose'
-allergen_repository.update(allergen2)
+# allergen2.product = 'All products containing lactose'
+# allergen_repository.update(allergen2)
 
 # allergen_repository.delete_by_id(35) If allergen is deleted all the product will delete as well. How to fix?
 # APART FROM DELETE BUGGING OUT THE REST OF THE METHODS WORK.
@@ -51,15 +51,15 @@ for product in all_products:
         print(products_without_allergen.price)
 
 print("Saving!")
-product1 = Product('Soy Milk hello', 'This is soy milk', 2.99, 'image url', 4, 100,
-              allergen2)
+# product1 = Product('Soy Milk hello', 'This is soy milk', 2.99, 'image url', 4, 100,
+#               allergen2)
 # product1.name = "bitch"
 product_repository.update(product1) 
 print("Saved!")
 
-cart_item1 = CartItem(5, product1)
+cart_item1 = CartItem(5, product1, product_id=product1.id)
 cart_item_repository.save(cart_item1)
-cart_item2 = CartItem(15, product1)
+cart_item2 = CartItem(15, product2, product_id=product2.id)
 cart_item_repository.save(cart_item2)
 all_cart_items = cart_item_repository.select_all()
 print(all_cart_items)
@@ -68,22 +68,23 @@ for cart in all_cart_items:
     print(cart.product_id)
     print(product_repository.select(cart.product_id))
     test = product_repository.select(cart.product_id)
-    print(test.name)
+    # print(test.name)
     # product_repository.delete(cart.product_id)
 
-shopping_cart1 = ShoppingCart(cart_item1)
+shopping_cart1 = ShoppingCart(items=[cart_item1])
 
 shopping_cart_repository.save(shopping_cart1)
 
-print(cart_item_repository.quantity_of_products())
+print("quantity", cart_item_repository.quantity_of_products())
 
 
 all_cart_prods = cart_item_repository.select_all()
 
 for cart_item in all_cart_prods:
-    products = cart_item.product_id
+    product = cart_item.product.id
+    print("products in for loop", product)
     print(cart_item.product_id)
-    var = product_repository.select(products)
+    var = product_repository.select(product)
     print(var.description)
 
 # UPDATE PRODUCT METHOD NOT WORKING CORRECTLY???

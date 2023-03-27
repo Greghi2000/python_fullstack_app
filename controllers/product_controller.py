@@ -14,8 +14,12 @@ def products():
     # pdb.set_trace()
     products = product_repository.select_all()
     allergens = allergen_repository.select_all()
-    items_in_cart = cart_item_repository.quantity_of_products()
-    return render_template("index.html", items_in_cart=items_in_cart, products=products, allergens=allergens)
+    # items_in_cart = cart_item_repository.quantity_of_products()
+    items_in_cart=cart_item_repository.select_all()
+    number_items_in_cart=0
+    for item in items_in_cart:
+        number_items_in_cart = number_items_in_cart + item.quantity
+    return render_template("index.html", number_items_in_cart=number_items_in_cart, items_in_cart=items_in_cart, products=products, allergens=allergens)
 
 @product_blueprint.route("/products/filter/<allergen_id>")
 def filter_products_by_allergen(allergen_id):

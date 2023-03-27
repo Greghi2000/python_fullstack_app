@@ -8,11 +8,14 @@ import repositories.cart_item_repository as cart_item_repository
 import repositories.product_repository as product_repository
 
 def save(shopping_cart):
-    sql = "INSERT INTO shopping_cart (cart_item_id) VALUES (%s) RETURNING id"
-    values = [shopping_cart.items_id.id]
-    results = run_sql(sql, values)
-    id = results[0]['id']
-    shopping_cart.id = id
+    for item in shopping_cart.items:
+        print("item id is", item.id)
+        sql = "INSERT INTO shopping_cart (cart_item_id) VALUES (%s) RETURNING id"
+        values = [item.id]
+        results = run_sql(sql, values)
+        print("result of shopping cart query", results)
+        id = results[0][0]
+        # shopping_cart.id = id
 
 def select_all():
     shopping_carts = []
