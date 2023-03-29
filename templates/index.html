@@ -37,15 +37,16 @@
           {% for product in products %}
           {% if allergen_to_filter not in product.allergens %}
           <div class="product-card">
-            <!-- <img src="product2-image-url" alt="Product" /> -->
+            <img src="{{product.image_url}}" alt="Product" class="product-image"/>
             <!-- <h3 class="product-name">product.name</h3> -->
             <a class="product-name" href="/products/{{product.id}}">{{product.name}}</a>
             <p class="product-price">${{product.price}}</p>
             <!-- <p class="delivery-time" href="../templates/product.html">Estimated delivery: 4-6 days</p> -->
-              <a class="add-prod" href="/cart/add/{{product.id}}">Add to Cart</a>
+              <a class="add-prod add-product-to-cart" href="/cart/add/{{product.id}}">
+                <button class="add-to-cart">Add to Cart</button>
+              </a>
               <!-- <a class="delete-prod" href="/products/edit/{{product.id}}">Edit</a> -->
-              <button class="add-to-cart">Add to Cart</button>
-              <div>
+              <div class="delete-edit-container">
                 <a class="delete-prod" href="/products/delete/{{product.id}}">Delete</a>
                 <a class="edit-prod" href="/products/edit/{{product.id}}">Edit</a>
               </div>
@@ -56,11 +57,14 @@
         </div>
       </section>
       <h2>Filter by Allergen</h2>
+      <p class="allergen-filter-p">Click on Allergen to filter!</p>
+      <a class="add-allergen" href="/allergen/new">Add new Allergen</a>
       <section class="allergen-filters">
         {% for allergen in allergens %}
         <div class="allergen-container">
-              <input type="checkbox" id="allergen-name" name="allergen-name"/>
-              <a label href="/products/filter/{{allergen.id}}" for="gluten-free" id="allergen-name">{{allergen.name}}</label>
+              <a label href="/products/filter/{{allergen.id}}" for="gluten-free" id="allergen-name">
+                {{allergen.name}}
+              </a>
         </div>
         {% endfor %}
       </section>
@@ -69,14 +73,14 @@
         {% endblock %}
       </div>
     </main>
-    <script>
-      // Hamburger menu functionality
+    <!-- <script> -->
+      <!-- // Hamburger menu functionality
       const hamburgerMenu = document.querySelector(".hamburger-menu");
       const mainNav = document.querySelector(".main-nav");
 
       hamburgerMenu.addEventListener("click", () => {
         mainNav.classList.toggle("active");
-      });
-    </script>
+      }); -->
+    <!-- </script> -->
   </body>
 </html>

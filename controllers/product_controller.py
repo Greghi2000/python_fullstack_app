@@ -21,11 +21,11 @@ def products():
         number_items_in_cart = number_items_in_cart + item.quantity
     return render_template("index.html", number_items_in_cart=number_items_in_cart, items_in_cart=items_in_cart, products=products, allergens=allergens)
 
+#FILTER FOR ALLERGENS
 @product_blueprint.route("/products/filter/<allergen_id>")
 def filter_products_by_allergen(allergen_id):
     products = product_repository.select_all_without_allergens(allergen_id)
     allergens = allergen_repository.select_all()
-    # allergen_name = request.form['allergen-name'] # How to make the allergen filter work?? When i tick specific allergen how do i make only the prods that contain that allergen dissapear?
     items_in_cart = cart_item_repository.quantity_of_products()
     return render_template("index.html", items_in_cart=items_in_cart, products=products, allergens=allergens)
 
@@ -33,7 +33,8 @@ def filter_products_by_allergen(allergen_id):
 @product_blueprint.route("/products/<id>")
 def view_product(id):
     product = product_repository.select(id)
-    return render_template("product.html", product=product)
+    items_in_cart = cart_item_repository.quantity_of_products()
+    return render_template("product.html", product=product, items_in_cart=items_in_cart)
 
 # NEW
 @product_blueprint.route("/products/new")
@@ -47,11 +48,13 @@ def new_product():
 def edit_product(id):
     product = product_repository.select(id)
     allergens = allergen_repository.select_all()
-    return render_template("edit-product.html", product=product, allergens=allergens)
+    items_in_cart = cart_item_repository.quantity_of_products()
+    return render_template("edit-product.html", items_in_cart=items_in_cart, product=product, allergens=allergens)
 
 # EDIT POST
-@product_blueprint.route("/products/edit", methods=["POST"])
-def edit_product_post():
+@product_blueprint.route("/products/edit/<id>", methods=["POST"])
+def edit_product_post(id):
+    id = id
     product = request.form["product"]
     description = request.form["description"]
     price = request.form["price"]
@@ -60,7 +63,7 @@ def edit_product_post():
     stock = request.form["stock"]
     allergen_id = request.form["allergen_id"]
     allergen = allergen_repository.select(allergen_id)
-    edited_product = Product(product, description, price, image_url, rating, stock, allergen)
+    edited_product = Product(product, description, price, image_url, rating, stock, allergen, id)
     product_repository.update(edited_product)
     return redirect("/products")
 

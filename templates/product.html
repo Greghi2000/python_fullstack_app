@@ -25,34 +25,40 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="/products/cart">Cart (0)</a>
+        <a href="/products/cart">Cart ({{ items_in_cart }})</a>
       </div>
     </header>
 
     <main>
       <section class="product-details">
-        <div class="product-image">
-          <!-- <img
-            src="vegan-chocolate-chip-cookies-image-url"
+        <div class="in-product-image">
+          <img
+            class="image-in-prods"
+            src="{{product.image_url}}"
             alt="Vegan Chocolate Chip Cookies"
-          /> -->
+          />
         </div>
         <div class="product-info">
-          <h1>{{product.name}}</h1>
+          <h1>Product Name: {{product.name}}</h1>
           <div class="rating">
-            <span>★★★★★</span>
-            <span class="rating-value">{{product.rating}}</span>
+            <p class="rating-value">Rating: {{product.rating}}</p>
+            <!-- <span>★★★★★</span> -->
           </div>
           <p class="product-price">${{product.price}}</p>
           <p class="product-description">
-            {{product.description}}
+            Product Description: {{product.description}}
           </p>
-          <button class="add-to-cart">Add to Cart</button>
+          <p class="stock-description">
+            Number in Stock: {{product.stock}}
+          </p>
+          <a class="add-prod add-product-to-cart" href="/cart/add/{{product.id}}">
+            <button class="add-to-cart">Add to Cart</button>
+          </a>
         </div>
       </section>
     </main>
 
-    <footer>
+    <!-- <footer>
       <div class="footer-links">
         <ul>
           <li><a href="#">Privacy Policy</a></li>
@@ -64,16 +70,16 @@
         <a href="#">Twitter</a>
         <a href="#">Instagram</a>
       </div>
-    </footer>
+    </footer> -->
 
-    <script>
-      // Hamburger menu functionality
+    <!-- <script> -->
+      <!-- // Hamburger menu functionality
       const hamburgerMenu = document.querySelector(".hamburger-menu");
       const mainNav = document.querySelector(".main-nav");
 
       hamburgerMenu.addEventListener("click", () => {
         mainNav.classList.toggle("active");
-      });
-    </script>
+      }); -->
+    <!-- </script> -->
   </body>
 </html>

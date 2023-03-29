@@ -16,75 +16,64 @@ cart_item_repository.delete_all()
 product_repository.delete_all()
 allergen_repository.delete_all()
 
+# ALLERGENS
 allergen1 = Allergen('Soy', 'All products containing soy')
 allergen_repository.save(allergen1)
 allergen2 = Allergen('Flour', 'All products containing flour')
 allergen_repository.save(allergen2)
-# allergen_selected_1 = allergen_repository.select(18)
-# print(allergen_selected_1) Select WORKS
-all_allergies = allergen_repository.select_all()
-for allergy in all_allergies:
-    print(allergy.id)
 
-# allergen2.product = 'All products containing lactose'
-# allergen_repository.update(allergen2)
+#PRODUCTS
+product1 = Product('Soy Sauce', 'A classic sauce made from fermented soybeans', 
+                   3.99, 'https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Soy-sauce-2e1d5da.jpg?resize=960,872', 4.2, 50, allergen1)
 
-# allergen_repository.delete_by_id(35) If allergen is deleted all the product will delete as well. How to fix?
-# APART FROM DELETE BUGGING OUT THE REST OF THE METHODS WORK.
+product2 = Product('Flour Tortillas', 'Soft and chewy tortillas perfect for wrapping up your favorite fillings', 
+                   2.49, 'https://upload.wikimedia.org/wikipedia/commons/5/56/NCI_flour_tortillas.jpg', 4.5, 75, allergen2)
 
-product1 = Product('Soy Milk', 'This is soy milk', 2.99, 'image url', 4, 100,
-              allergen1)
+product3 = Product('Soy Milk', 'A dairy-free milk alternative made from soybeans', 
+                   4.99, 'https://post.healthline.com/wp-content/uploads/2022/05/soy-milk-bottle-732-549-feature-thumb.jpg', 4.1, 60, allergen1)
+
+product4 = Product('Chocolate Cake', 'A rich and decadent chocolate cake made without flour', 
+                   19.99, 'https://sugarfreelondoner.com/wp-content/uploads/2020/12/sugar-free-birthday-cake-chocolate-1200.jpg', 4.8, 20, allergen2)
+
+product5 = Product('Soy Nuts', 'A crunchy and healthy snack made from roasted soybeans', 
+                   1.99, "https://cdn.shopify.com/s/files/1/0075/9549/1441/products/467-4_800x.jpg?v=1666852651", 4.3, 100, allergen1)
+
+product6 = Product('Gluten-Free Flour Blend', 'A versatile flour blend that can be used in place of wheat flour in many recipes', 
+                   6.99, 'https://littlespoonfarm.com/wp-content/uploads/2021/09/Gluten-free-flour-blend-recipe-500x375.jpg', 4.6, 30, allergen2)
+product7 = Product('Soy Burger', 'A plant-based burger patty made from soy protein', 
+                   5.99, 'https://www.stayathomemum.com.au/wp-content/uploads/2011/10/Soy-Bean-Burger-Patties-.jpg', 4.4, 40, allergen1)
+
+product8 = Product('All-Purpose Flour', 'A pantry staple for baking and cooking', 
+                   2.29, 'https://www.spatuladesserts.com/wp-content/uploads/2022/07/is-all-purpose-flour-the-same-as-plain-flour_3.jpg', 4.7, 90, allergen2)
+
+product9 = Product('Edamame', 'A healthy and protein-packed snack made from immature soybeans', 
+                   3.49, 'https://evergreenkitchen.ca/wp-content/uploads/2021/10/Sesame-Spiced-Edamame-0-4X5-500x500.jpg', 4.2, 80, allergen1)
+
+product10 = Product('Soy Yogurt', 'A dairy-free yogurt alternative made from soy milk', 
+                    1.99, 'https://yumveganlunchideas.com/wp-content/uploads/2020/08/soy-greek-yogurt-scaled.jpg', 4.0, 70, allergen1)
+
+product11 = Product('Almond Flour Bread', 'A gluten-free bread made with almond flour instead of wheat flour', 
+                    6.99, 'https://foolproofliving.com/wp-content/uploads/2020/01/Almond-Flour-Bread-Recipe-Image.jpg', 4.5, 25, allergen2)
+
+product12 = Product('Soy Sauce Powder', 'A convenient and versatile powder form of soy sauce', 
+                    4.99, 'https://www.tastesensationltd.com/wp-content/uploads/2022/04/AMAZON-SOY-SAUCE-POWDER-IMAGE-1-2-scaled.jpg', 4.1, 50, allergen1)
 product_repository.save(product1)
-product2 = Product('Pasta', 'This is pasta', 2.99, 'image url', 4, 100,
-              allergen2)
 product_repository.save(product2)
-all_products = product_repository.select_all()
-for product in all_products:
-    print('start here')
-    print(product.id)
-    print(product.allergen_id.id)
-    product_repository.select(product.id) # select WORKS
-    # product_repository.delete(product.id) WORKS
-    print('this!!!')
-    products_without_allergens = (product_repository.select_all_without_allergens(product.allergen_id.id))
-    for products_without_allergen in products_without_allergens:
-        print(products_without_allergen.price)
+product_repository.save(product3)
+product_repository.save(product4)
+product_repository.save(product5)
+product_repository.save(product6)
+product_repository.save(product7)
+product_repository.save(product8)
+product_repository.save(product9)
+product_repository.save(product10)
+product_repository.save(product11)
+product_repository.save(product12)
 
-print("Saving!")
-# product1 = Product('Soy Milk hello', 'This is soy milk', 2.99, 'image url', 4, 100,
-#               allergen2)
-# product1.name = "bitch"
-product_repository.update(product1) 
-print("Saved!")
-
-cart_item1 = CartItem(5, product1, product_id=product1.id)
-cart_item_repository.save(cart_item1)
-cart_item2 = CartItem(15, product2, product_id=product2.id)
-cart_item_repository.save(cart_item2)
-all_cart_items = cart_item_repository.select_all()
-print(all_cart_items)
-for cart in all_cart_items:
-    print(cart.id)
-    print(cart.product_id)
-    print(product_repository.select(cart.product_id))
-    test = product_repository.select(cart.product_id)
-    # print(test.name)
-    # product_repository.delete(cart.product_id)
-
-shopping_cart1 = ShoppingCart(items=[cart_item1])
-
-shopping_cart_repository.save(shopping_cart1)
-
-print("quantity", cart_item_repository.quantity_of_products())
-
-
-all_cart_prods = cart_item_repository.select_all()
-
-for cart_item in all_cart_prods:
-    product = cart_item.product.id
-    print("products in for loop", product)
-    print(cart_item.product_id)
-    var = product_repository.select(product)
-    print(var.description)
-
-# UPDATE PRODUCT METHOD NOT WORKING CORRECTLY???
+#ITEMS IN CART
+cart_item1 = CartItem(5, product1, product1.id)
+cart_item1 = cart_item_repository.save(cart_item1)
+cart_item2 = CartItem(1, product2, product2.id)
+cart_item2 = cart_item_repository.save(cart_item2)
+print(cart_item1.id)
+cart_item_repository.delete_by_id(cart_item1.id)

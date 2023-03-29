@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block content %}
+      <section class="product-details">
+        <form action="/products/create" method="POST">
+          <div>
+            <label for="allergen-attribute">Allergen Attribute:</label>
+            <input type="text" id="allergen-attribute" name="allergen-attribute">
+        </div>
+          <div>
+            <label for="allergen-description">Allergen Description:</label>
+            <input type="text" id="allergen-description" name="allergen-description">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+      </form>
+{% endblock %}

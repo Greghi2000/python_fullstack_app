@@ -6,13 +6,20 @@ class ShoppingCart:
         self.items = items
         self.id = id
 
-    def addItem(self, item: CartItem):
+    def add_item(self, item: CartItem):
         self.items.append(item)
 
-    def getItems(self):
+    def remove_item(self, item: CartItem):
+        id = item.id
+        for i in self.items:
+            if i.id == id:
+                self.items.remove(i)
+
+    def get_items(self):
         return self.items
     
-    def getItemById(self, id):
+    
+    def get_item_by_id(self, id):
         for i in self.items:
             if i.product_id==id:
                 return i

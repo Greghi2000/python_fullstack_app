@@ -22,7 +22,7 @@ def save(cart_item: CartItem):
     cart_item.id = id
     return cart_item
 
-def select_all():
+def select_all() -> list[CartItem]:
     cart_items = []
     sql = "SELECT * FROM cart_item"
     results = run_sql(sql)

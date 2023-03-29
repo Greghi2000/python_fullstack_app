@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/static/styles.css"/>
-    <title>| Allergy-Free Foods</title>
+    <title>{{products.name}} | Allergy-Free Foods</title>
   </head>
   <body>
     <header>
@@ -25,29 +25,25 @@
         <button>Search</button>
       </div>
       <div class="cart">
-        <a href="#">Cart ({{ items_in_cart }})</a>
+        <a href="#">Cart</a>
       </div>
     </header>
 
     <main>
-      <section class="featured-products">
-        <h2>Cart Products</h2>
-        <div class="product-grid">
-          {% for cart_item in total_items_in_cart %}
-          <div class="product-card-cart-item">
-            <img src="{{cart_item.product.image_url}}" alt="Product" class="image-cart-prod"/>
-            <a class="product-name" href="/products/{{cart_item.product.id}}">Product: {{cart_item.product.name}}</a>
-            <p class="product-price">Price: ${{cart_item.product.price}}</p>
-            <p class="product-price">Description: {{cart_item.product.description}}</p>
-            <p class="product-quantity">Quantity: {{cart_item.quantity}}</p>
-            <p class="product-quantity">Product ID: {{cart_item.id}}</p>
-            <a class="add-prod" href="/cart/remove-item/{{cart_item.id}}">
-              <button class="add-to-cart">Remove from Cart</button>
-            </a>
-          </div>
-          
-          {% endfor %}
+      <section class="product-details">
+        <form action="/allergen/create" method="POST">
+          <div>
+            <label for="allergen-attribute">Allergen Attribute:</label>
+            <input type="text" id="allergen-attribute" name="allergen-attribute">
         </div>
+          <div>
+            <label for="allergen-description">Allergen Description:</label>
+            <input type="text" id="allergen-description" name="allergen-description">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+      </form>
       </section>
     </main>
 
