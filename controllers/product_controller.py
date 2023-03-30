@@ -27,7 +27,7 @@ def filter_products_by_allergen(allergen_id):
     products = product_repository.select_all_without_allergens(allergen_id)
     allergens = allergen_repository.select_all()
     items_in_cart = cart_item_repository.quantity_of_products()
-    return render_template("index.html", items_in_cart=items_in_cart, products=products, allergens=allergens)
+    return render_template("index.html", number_items_in_cart=items_in_cart, products=products, allergens=allergens)
 
 # VIEW
 @product_blueprint.route("/products/<id>")

@@ -318,6 +318,10 @@
     margin-bottom: 1rem;
   }
 
+  .filter-heading {
+    margin-top: 20px;
+  }
+
   /* Media queries for responsiveness */
   @media screen and (max-width: 890px) {
     .main-nav ul {
